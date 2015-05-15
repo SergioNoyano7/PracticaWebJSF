@@ -5,10 +5,12 @@
  */
 package pwjsf.ejb;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import pwjsf.entity.Tpost;
+import pwjsf.entity.Tusuario;
 
 /**
  *
@@ -26,6 +28,18 @@ public class TpostFacade extends AbstractFacade<Tpost> {
 
     public TpostFacade() {
         super(Tpost.class);
+    }
+    
+        public Tpost insertarPostByUsuario(Tusuario usuario,List<Tpost> lista,String texto){
+
+        Tpost p = new Tpost();
+        p.setTexto(texto);
+        p.setImagen(null);
+        p.setTusuarioIdUser(usuario);
+        
+        em.persist(p);
+        
+        return p;
     }
     
 }

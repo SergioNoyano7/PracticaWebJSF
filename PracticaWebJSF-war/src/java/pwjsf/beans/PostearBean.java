@@ -5,9 +5,11 @@
  */
 package pwjsf.beans;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import pwjsf.ejb.TpostFacade;
 import pwjsf.entity.Tpost;
 import pwjsf.entity.Tusuario;
 
@@ -21,6 +23,9 @@ public class PostearBean {
 
     @ManagedProperty(value="#{loginBean}")
     private LoginBean loginBean;
+    
+    @EJB
+    private TpostFacade fachadaPost;
     
     private String post;
     
@@ -46,12 +51,14 @@ public class PostearBean {
         this.loginBean = loginBean;
     }
     
-    public String doCrearPost(){
-        Tusuario user = loginBean.usuario;
+    public String doPost(){
+        Tusuario user = loginBean.user;
         Tpost p = new Tpost();
         
         p.setTexto(post);
         p.setTusuarioIdUser(user);
+        
+        this.fachadaPost.insertarPostByUsuario(user, null, post);
         
         return "preguntaImagen";
     }
