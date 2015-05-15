@@ -47,10 +47,11 @@ public class PostearBean {
     }
     
     public String doCrearPost(){
+        Tusuario user = loginBean.usuario;
         Tpost p = new Tpost();
+        
         p.setTexto(post);
-        //p.setTusuarioIdUser(user);
-        p.setTusuarioIdUser(null);
+        p.setTusuarioIdUser(user);
         
         return "preguntaImagen";
     }
