@@ -5,9 +5,11 @@
  */
 package pwjsf.ejb;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import pwjsf.entity.Tusuario;
 
 /**
@@ -26,6 +28,27 @@ public class TusuarioFacade extends AbstractFacade<Tusuario> {
 
     public TusuarioFacade() {
         super(Tusuario.class);
+    }
+    
+    public Tusuario findByNameAndPass(String name,String pass){
+        Query q;
+        List<Tusuario> lista;
+        Tusuario user;
+        
+        System.out.println(name + " " + pass);
+        
+        q = em.createQuery("SELECT u FROM Tusuario u WHERE u.nombre = :NAME AND u.password = :PASS");
+        q.setParameter("NAME", name);
+        q.setParameter("PASS", pass);
+       
+        lista= (List<Tusuario>)q.getResultList();
+        if(!lista.isEmpty()){
+            user = lista.get(0);
+        }else{
+            user = null;
+        }
+        return user;
+        
     }
     
 }
