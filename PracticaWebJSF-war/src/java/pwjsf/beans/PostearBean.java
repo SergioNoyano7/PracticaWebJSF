@@ -51,7 +51,7 @@ public class PostearBean {
         this.loginBean = loginBean;
     }
     
-    public String doPost(){
+    public String doPostear(){
         Tusuario user = loginBean.user;
         Tpost p = new Tpost();
         
