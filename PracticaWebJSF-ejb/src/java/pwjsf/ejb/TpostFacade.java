@@ -5,10 +5,12 @@
  */
 package pwjsf.ejb;
 
+import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import pwjsf.entity.Tpost;
 import pwjsf.entity.Tusuario;
 
@@ -40,6 +42,21 @@ public class TpostFacade extends AbstractFacade<Tpost> {
         em.persist(p);
         
         return p;
+    }
+        
+    public List<Tpost> findListPostByIdUsuario(BigDecimal id){
+        Query q;
+        List<Tpost> listaPost;
+        
+        q = em.createQuery("SELECT p FROM Tpost p WHERE p.tusuarioIdUser.idUser = :ID");
+        q.setParameter("ID", id);
+        listaPost = (List<Tpost>)q.getResultList();
+        
+        if(listaPost.isEmpty()){
+            listaPost=null;
+        }
+        
+        return listaPost;
     }
     
 }

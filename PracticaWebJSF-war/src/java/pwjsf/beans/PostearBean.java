@@ -5,6 +5,7 @@
  */
 package pwjsf.beans;
 
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -53,13 +54,21 @@ public class PostearBean {
     
     public String doPostear(){
         Tusuario user = loginBean.user;
-        Tpost p = new Tpost();
+        String devolver;
         
-        p.setTexto(post);
-        p.setTusuarioIdUser(user);
-        
-        this.fachadaPost.insertarPostByUsuario(user, null, post);
-        
-        return "preguntaImagen";
+        if(user != null){
+            List<Tpost> listaPost = this.fachadaPost.findListPostByIdUsuario(user.getIdUser());
+            Tpost p = new Tpost();
+
+            p.setTexto(post);
+            p.setTusuarioIdUser(user);
+
+            this.fachadaPost.insertarPostByUsuario(user, listaPost, post);
+
+            devolver = "preguntaImagen";
+        }else{
+            devolver = "control";
+        }
+        return devolver;
     }
 }
