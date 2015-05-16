@@ -11,9 +11,11 @@
         <h:form>
             <p:growl id="messages" showDetail="true" />
  
-            <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true"/>
+            <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true"/><br/>
  
-            <p:commandButton value="Submit" ajax="false" actionListener="#{fileUploadView.upload()}"/>
+            <p:commandButton value="Subir" ajax="false" actionListener="#{fileUploadView.upload()}"/>
+            <p:commandButton value="Cancelar" action="principal"/>
+      
         </h:form>
     </h:body>
 </html>
