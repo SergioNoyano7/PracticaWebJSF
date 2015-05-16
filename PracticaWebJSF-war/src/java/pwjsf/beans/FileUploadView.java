@@ -5,12 +5,16 @@
  */
 package pwjsf.beans;
 
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
  
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
+import pwjsf.ejb.TpostFacade;
+import pwjsf.entity.Tpost;
 /**
  *
  * @author Sergio
@@ -18,27 +22,40 @@ import org.primefaces.model.UploadedFile;
 
 @ManagedBean
 public class FileUploadView {
+    
+    @ManagedProperty(value="#{postearBean}")
+    private PostearBean postearBean;
+    
+    @EJB
+    private TpostFacade fachadaPost;
      
-    private UploadedFile file;
- 
-    public UploadedFile getFile() {
-        return file;
+
+    public PostearBean getPostearBean() {
+        return postearBean;
     }
- 
-    public void setFile(UploadedFile file) {
-        this.file = file;
+
+    public void setPostearBean(PostearBean postearBean) {
+        this.postearBean = postearBean;
     }
-     
-    public String upload(){
-        String paginaRedireccionada;
-        if(file != null) {
-            FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
-            FacesContext.getCurrentInstance().addMessage(null, message);
-            //falta actualizar el post e insertarlo en la base de datos
-            paginaRedireccionada = "postear";
-        }else{
-            paginaRedireccionada = "errorImagen";
-        }
-        return paginaRedireccionada;
+
+    public TpostFacade getFachadaPost() {
+        return fachadaPost;
+    }
+
+    public void setFachadaPost(TpostFacade fachadaPost) {
+        this.fachadaPost = fachadaPost;
+    }
+    
+    public void handleFileUpload(FileUploadEvent event) {
+        
+        FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        //falta actualizar el post e insertarlo en la base de datos
+
+        Tpost p = postearBean.getPost();
+        System.out.println(p.getTexto());
+        p.setImagen(event.getFile().getFileName());
+
+        this.fachadaPost.edit(p);
     }
 }

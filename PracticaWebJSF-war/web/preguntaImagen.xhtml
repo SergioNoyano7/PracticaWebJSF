@@ -9,13 +9,14 @@
     <h:body>
         A&ntilde;ada aqu&iacute; una imagen si lo desea
         <h:form>
+            <p:fileUpload fileUploadListener="#{fileUploadView.handleFileUpload}" mode="advanced" dragDropSupport="true"
+           update="messages" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+ 
             <p:growl id="messages" showDetail="true" />
- 
-            <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true"/><br/>
- 
-            <p:commandButton value="Subir" ajax="false" actionListener="#{fileUploadView.upload()}"/>
-            <p:commandButton value="Cancelar" action="principal"/>
-      
+
+        </h:form>
+        <h:form>
+            <h:commandButton value="Terminar" action="principal"/>
         </h:form>
     </h:body>
 </html>
