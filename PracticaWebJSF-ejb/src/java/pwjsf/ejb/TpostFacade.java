@@ -32,31 +32,8 @@ public class TpostFacade extends AbstractFacade<Tpost> {
         super(Tpost.class);
     }
     
-        public Tpost insertarPostByUsuario(Tusuario usuario,List<Tpost> lista,String texto){
-
-        Tpost p = new Tpost();
-        p.setTexto(texto);
-        p.setImagen(null);
-        p.setTusuarioIdUser(usuario);
-        
-        em.persist(p);
-        
-        return p;
-    }
-        
-    public List<Tpost> findListPostByIdUsuario(BigDecimal id){
-        Query q;
-        List<Tpost> listaPost;
-        
-        q = em.createQuery("SELECT p FROM Tpost p WHERE p.tusuarioIdUser.idUser = :ID");
-        q.setParameter("ID", id);
-        listaPost = (List<Tpost>)q.getResultList();
-        
-        if(listaPost.isEmpty()){
-            listaPost=null;
-        }
-        
-        return listaPost;
+    public void insertarPost(Tpost p){
+       em.persist(p);
     }
     
 }

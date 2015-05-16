@@ -22,11 +22,11 @@ import pwjsf.entity.Tusuario;
 @RequestScoped
 public class PostearBean {
 
-    @ManagedProperty(value="#{loginBean}")
-    private LoginBean loginBean;
-    
     @EJB
     private TpostFacade fachadaPost;
+    
+    @ManagedProperty(value="#{loginBean}")
+    private LoginBean loginBean;
     
     private String post;
     
@@ -54,21 +54,20 @@ public class PostearBean {
     
     public String doPostear(){
         Tusuario user = loginBean.user;
-        String devolver;
-        System.out.println(user.toString());
+        String paginaRedireccionada;
+        System.out.println(user.getNombre());
         if(user != null){
-            List<Tpost> listaPost = this.fachadaPost.findListPostByIdUsuario(user.getIdUser());
             Tpost p = new Tpost();
 
             p.setTexto(post);
             p.setTusuarioIdUser(user);
 
-            this.fachadaPost.insertarPostByUsuario(user, listaPost, post);
+            this.fachadaPost.insertarPost(p);
 
-            devolver = "preguntaImagen";
+            paginaRedireccionada = "preguntaImagen";
         }else{
-            devolver = "control";
+            paginaRedireccionada = "control";
         }
-        return devolver;
+        return paginaRedireccionada;
     }
 }
