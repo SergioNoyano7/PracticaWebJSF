@@ -55,7 +55,7 @@ public class PostearBean {
     public String doPostear(){
         Tusuario user = loginBean.user;
         String devolver;
-        
+        System.out.println(user.toString());
         if(user != null){
             List<Tpost> listaPost = this.fachadaPost.findListPostByIdUsuario(user.getIdUser());
             Tpost p = new Tpost();
