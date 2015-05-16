@@ -9,6 +9,7 @@
         Usuario: #{loginBean.user.nombre}
         <h:form>
             Escriba aqu&iacute; su post:<br/>
+            
             <h:inputTextarea value="#{postearBean.post}"/><br/>
             <h:commandButton value="Postear" action="#{postearBean.doPostear()}" /><br/>
         </h:form>

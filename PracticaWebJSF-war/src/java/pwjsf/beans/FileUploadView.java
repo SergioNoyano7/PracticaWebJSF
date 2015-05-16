@@ -30,15 +30,15 @@ public class FileUploadView {
     }
      
     public String upload(){
-        String retorno;
+        String paginaRedireccionada;
         if(file != null) {
             FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
             //falta actualizar el post e insertarlo en la base de datos
-            retorno = "postear";
+            paginaRedireccionada = "postear";
         }else{
-            retorno = "errorImagen";
+            paginaRedireccionada = "errorImagen";
         }
-        return retorno;
+        return paginaRedireccionada;
     }
 }
