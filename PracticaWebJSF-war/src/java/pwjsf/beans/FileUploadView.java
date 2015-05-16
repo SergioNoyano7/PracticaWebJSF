@@ -29,7 +29,7 @@ public class FileUploadView {
         this.file = file;
     }
      
-    public String upload() {
+    public String upload(){
         String retorno;
         if(file != null) {
             FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
@@ -39,7 +39,6 @@ public class FileUploadView {
         }else{
             retorno = "errorImagen";
         }
-        
         return retorno;
     }
 }
