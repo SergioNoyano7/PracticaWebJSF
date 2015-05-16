@@ -65,6 +65,7 @@ public class PostearBean {
             this.fachadaPost.insertarPost(p);
 
             paginaRedireccionada = "preguntaImagen";
+            
         }else{
             paginaRedireccionada = "control";
         }
