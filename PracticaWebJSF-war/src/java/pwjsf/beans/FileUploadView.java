@@ -48,13 +48,16 @@ public class FileUploadView {
     
     public void handleFileUpload(FileUploadEvent event) {
         
+        String filePath = FacesContext.getCurrentInstance().getExternalContext().getInitParameter("file-upload");
         FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, message);
+        
         //falta actualizar el post e insertarlo en la base de datos
 
         Tpost p = postearBean.getPost();
         System.out.println(p.getTexto());
-        p.setImagen(event.getFile().getFileName());
+        System.out.println(filePath + event.getFile().getFileName());
+        p.setImagen(filePath + event.getFile().getFileName());
 
         this.fachadaPost.edit(p);
     }
