@@ -74,7 +74,7 @@ public class LoginBean {
             } else {
                 
                 if (user!=null) {
-                    return "postearFormulario";
+                    return "principal";
                 } else return "control";
             }
                 
