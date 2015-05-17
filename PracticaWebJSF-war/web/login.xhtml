@@ -4,27 +4,30 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>Login</title>
+       <h:outputStylesheet  name="css/style.css"  />
+
     </h:head>
     <h:body>
-        <h:form>
+        <h:form class="login">
 
     <h:panelGrid columns="2" >
 
         <h:outputLabel for="username">Username:</h:outputLabel>
 
-        <h:inputText id="username" value="#{loginBean.username}"/>
+        <h:inputText class="login-input" id="userL" value="#{loginBean.username}"/>
 
         <h:outputLabel for="password">Password:</h:outputLabel>
-
-        <h:inputText id="password" value="#{loginBean.password}"/>
+        
+        <h:inputSecret class="login-input" id="passL" value="#{loginBean.password}"/>
 
     </h:panelGrid>
 
-     <h:commandButton value="Login" action="#{loginBean.doEnviar()}" />
+     <h:commandButton class="login-submit" value="Login" action="#{loginBean.doEnviar()}" />
 
     
 
 </h:form>
+        <h:outputStylesheet name="style.css" library="css"/>
     </h:body>
     
 
