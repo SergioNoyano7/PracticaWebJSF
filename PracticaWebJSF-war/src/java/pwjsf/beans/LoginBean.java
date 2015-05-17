@@ -64,9 +64,23 @@ public class LoginBean {
     
     public String doEnviar (){
         
-        user= this.tusuarioFacade.findByNameAndPass(username, password);
-        return "principal";
-    }
+        if (username == null || username.equalsIgnoreCase("") || password ==null || password.equalsIgnoreCase("") ){
+        return "control" ;    
+        } else{
+            user= this.tusuarioFacade.findByNameAndPass(username, password);
+            
+            if (user.getBloqueado().equals('1')){
+                return "estasBloqueado";
+            } else {
+                
+                if (user!=null) {
+                    return "postearFormulario";
+                } else return "control";
+            }
+                
+       }
+        
+}
     
     
     
