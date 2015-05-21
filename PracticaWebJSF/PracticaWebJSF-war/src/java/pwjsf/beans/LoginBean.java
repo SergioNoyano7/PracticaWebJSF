@@ -5,6 +5,7 @@ package pwjsf.beans;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -27,7 +28,16 @@ public class LoginBean {
     
     Tusuario user;
     
-    
+    /*
+    Fran:
+    Añado aqui dos nuevas propiedades:
+    - char gestionar: esta propiedad me sirve para diferenciar si lo que 
+                        quería el usuario era borrar o añadir un amigo.
+    - List<Tusuario> listaAmigos: Esta propiedad almaceza los amigos del usuario
+                        que se ha logueado. 
+    */
+    private char gestionar;
+    private List<Tusuario> listaUsuario;
     
     
     /**
@@ -61,6 +71,22 @@ public class LoginBean {
     public void setUser(Tusuario user) {
         this.user = user;
     }
+
+    public char getGestionar() {
+        return gestionar;
+    }
+
+    public void setGestionar(char gestionar) {
+        this.gestionar = gestionar;
+    }
+
+    public List<Tusuario> getListaUsuario() {
+        return listaUsuario;
+    }
+
+    public void setListaUsuario(List<Tusuario> listaUsuario) {
+        this.listaUsuario = listaUsuario;
+    }
     
     public String doEnviar (){
         
@@ -74,6 +100,10 @@ public class LoginBean {
             } else {
                 
                 if (user!=null) {
+                    /*
+                    Aquí tengo que inicialiizar la variable listaAmigos
+                    Copiar del otro proyecto en el servlet ListaAmigosServlet
+                    */
                     return "principal";
                 } else return "control";
             }
