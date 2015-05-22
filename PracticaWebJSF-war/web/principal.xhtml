@@ -11,7 +11,8 @@
         <h:form>
             <h:outputLabel rendered="#{loginBean.user.administrador == '1'}" value="Este usuario es administrador" /><br/>
             <h:commandButton rendered="#{loginBean.user.administrador == '1'}" value="Lista usuarios de la Red Social" action="#{principalBean.doListaUsuarios()}" /><br/>
-            <h:commandButton value="Añadir post" action="#{principalBean.doPostear()}" /><br/>
+            <h:commandButton value="Añadir post" action="#{principalBean.doPostear()}" />
+            <h:commandButton value="Lista post" action="#{postearBean.doListaPost()}" /><br/>
         </h:form>
         
     

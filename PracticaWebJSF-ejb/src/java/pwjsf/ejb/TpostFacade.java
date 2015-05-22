@@ -36,4 +36,19 @@ public class TpostFacade extends AbstractFacade<Tpost> {
        em.persist(p);
     }
     
+     public List<Tpost> findListPostByIdUsuario(BigDecimal id){
+        Query q;
+        List<Tpost> listaPost;
+        
+        q = em.createQuery("SELECT p FROM Tpost p WHERE p.tusuarioIdUser.idUser = :ID");
+        q.setParameter("ID", id);
+        listaPost = (List<Tpost>)q.getResultList();
+        
+        if(listaPost.isEmpty()){
+            listaPost=null;
+        }
+        
+        return listaPost;
+    }
+    
 }

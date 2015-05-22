@@ -35,7 +35,7 @@ public class PrincipalBean {
     public String doPostear(){
         return "postearFormulario";
     }
-
+    
     public TusuarioFacade getFachada() {
         return fachada;
     }

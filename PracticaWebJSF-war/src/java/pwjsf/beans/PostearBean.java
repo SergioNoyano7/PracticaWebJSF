@@ -29,8 +29,10 @@ public class PostearBean {
     private TpostFacade fachadaPost;
     
     private String texto;
-    
+    private int listado;
     private Tpost post;
+    
+    private List<Tpost> listaPost;
     
     /**
      * Creates a new instance of PostearBean
@@ -69,11 +71,27 @@ public class PostearBean {
     public void setPost(Tpost post) {
         this.post = post;
     }
+
+    public List<Tpost> getListaPost() {
+        return listaPost;
+    }
+
+    public void setListaPost(List<Tpost> listaPost) {
+        this.listaPost = listaPost;
+    }
+
+    public int getListado() {
+        listado++;
+        return listado;
+    }
+
+    public void setListado(int listado) {
+        this.listado = listado;
+    }
     
     public String doPostear(){
         Tusuario user = loginBean.user;
         String paginaRedireccionada;
-        System.out.println(user.getNombre());
         if(user != null){
             post = new Tpost();
 
@@ -88,5 +106,20 @@ public class PostearBean {
             paginaRedireccionada = "control";
         }
         return paginaRedireccionada;
+    }
+    
+    public String doListaPost(){
+        Tusuario user = loginBean.user;
+        String siguientePag;
+        if(user != null){
+            listaPost = fachadaPost.findListPostByIdUsuario(user.getIdUser());
+            
+            siguientePag = "listaPost";
+            
+        }else{
+            siguientePag = "control";
+        }
+        
+        return siguientePag;
     }
 }
