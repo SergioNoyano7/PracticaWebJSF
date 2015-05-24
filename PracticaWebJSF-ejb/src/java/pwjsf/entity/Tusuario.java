@@ -124,6 +124,11 @@ public class Tusuario implements Serializable {
         return bloqueado;
     }
 
+    @XmlTransient
+    public boolean estaBloqueado() {
+        return this.bloqueado.equals('1');
+    }
+
     public void setBloqueado(Character bloqueado) {
         this.bloqueado = bloqueado;
     }
@@ -187,5 +192,16 @@ public class Tusuario implements Serializable {
     public String toString() {
         return "ejb.entity.Tusuario[ idUser=" + idUser + " ]";
     }
+    
+      public boolean anadirAmigo(Tusuario nuevoAmigo) {
+       boolean ok = false;
+       if(!this.tusuarioList.contains(nuevoAmigo)){
+           this.tusuarioList.add(nuevoAmigo);
+           ok=true;
+       }
+       
+       return ok;
+    }
+    
     
 }

@@ -1,29 +1,41 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Gestionar Amigo</title>
+        <h:outputStylesheet  name="css/style.css"  />
     </h:head>
     <h:body>
+        <div align ="center" class="texto "><h:form>
+            
+
+            <h:outputText id="textAnadir"
+                          value="Añadir Amigo:"
+                          rendered="#{gestionarAmigoBean.loginBean.gestionar == 'a'}"/>
+                   
         
-        <h:outputText value="Añadir Amigo"
-                      rendered="#{gestionarAmigoBean.loginBean.gestionar == 'a'}"
-                      />
-        <h:outputText value="Borrar Amigo"
-                      rendered="#{gestionarAmigoBean.loginBean.gestionar == 'd'}"
-                      />
-        
-        <h:form>
+            <h:outputText id="textBorrar"
+                          value="Borrar Amigo"
+                          rendered="#{gestionarAmigoBean.loginBean.gestionar == 'd'}"
+                          />
+            <br/>
             <h:outputLabel value="Indique el amigo que quiere añadir"
                            rendered="#{gestionarAmigoBean.loginBean.gestionar == 'a'}"
                            />
             <h:outputLabel value="Indique el amigo que quiere eliminar"
                            rendered="#{gestionarAmigoBean.loginBean.gestionar == 'd'}"
                            />
-            <h:inputText value="#{gestionarAmigoBean.nombreAmigoGestionado}" />
+            <br/>
+            <h:messages errorStyle="color:red; list-style:none" />
+            <h:inputText value="#{gestionarAmigoBean.nombreAmigoGestionado}" 
+                         required="true"
+                         requiredMessage="Introduzca el nombre del amigo"
+                         />
             
-            <h:commandButton value="A&ntilde;adir" 
+            <br/>
+            <h:commandButton  class="button" value="A&ntilde;adir" 
                              action="#{gestionarAmigoBean.doAnadir}"
                              rendered="#{gestionarAmigoBean.loginBean.gestionar == 'a'}"
                              />
@@ -32,6 +44,18 @@
                              rendered="#{gestionarAmigoBean.loginBean.gestionar == 'd'}"
                              />
         </h:form>
+        </div><div align="center" class="div" >
+            <h:dataTable value="#{loginBean.listaAmigos}" var="amigo" border="1">
+            
+                <h:column rendered="#{!loginBean.listaAmigos.isEmpty()}">
+                    <f:facet name="header">
+                        Amigos:
+                    </f:facet>
+                    #{amigo.nombre}
+                </h:column>
+            </h:dataTable>
+        </div>
+        
     </h:body>
 </html>
 

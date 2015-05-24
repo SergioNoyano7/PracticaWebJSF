@@ -88,7 +88,7 @@ public class PostearBean {
     public void setListado(int listado) {
         this.listado = listado;
     }
-    
+
     public String doPostear(){
         Tusuario user = loginBean.user;
         String paginaRedireccionada;
@@ -121,5 +121,10 @@ public class PostearBean {
         }
         
         return siguientePag;
+    }
+    
+    public String doMostrarImagen(Tpost p){
+        setPost(p);
+        return "mostrarImagen";
     }
 }

@@ -5,9 +5,13 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Usuarios Red Social</title>
+        <h:outputStylesheet  name="css/style.css"  />
     </h:head>
     <h:body>
-        <h:dataTable value="#{principalBean.lista}" var="usuario" border="1">
+        
+            <h:form>
+            <div align="center" >
+            <h:dataTable value="#{principalBean.lista}" var="usuario" border="1"> 
             <h:column>
                 <f:facet name="header">
                     ID usuario
@@ -20,10 +24,33 @@
                 </f:facet>
                 #{usuario.nombre}
             </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Bloqueado
+                </f:facet>
+                <h:selectBooleanCheckbox value="#{usuario.estaBloqueado()}" disabled="true" /> Sí 
+                <h:selectBooleanCheckbox  value="#{usuario.estaBloqueado()==false}" disabled="true" /> No     
+               
+            </h:column>
+            <h:column >
+                <f:facet name="header">
+                    Bloquear
+                </f:facet>
+                <h:commandButton rendered="#{usuario.estaBloqueado()}"  value="Desbloquear" action="#{principalBean.doDesbloquearUser()}" >
+                <f:setPropertyActionListener target="#{principalBean.usuarioSel}" value="#{usuario.idUser}" />
+                </h:commandButton>
+                
+                
+                
+                <h:commandButton  rendered="#{usuario.estaBloqueado()==false}"  value="Bloquear" action="#{principalBean.doBloquearUser()}" >
+                <f:setPropertyActionListener target="#{principalBean.usuarioSel}" value="#{usuario.idUser}" />
+                </h:commandButton>
+            </h:column>
         </h:dataTable>
-        
-        <h:form>
-            <h:commandButton value="Volver a la página principal" action="principal" />
+                </div>
+                    
+
+            <div align="center"  ><h:commandButton class="button" value="Volver a la página principal" action="principal" /> </div>
         </h:form>
     </h:body>
 </html>

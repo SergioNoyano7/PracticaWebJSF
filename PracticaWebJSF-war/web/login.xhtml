@@ -10,7 +10,7 @@
     <h:body>
         <h:form class="login">
 
-    <h:panelGrid columns="2" >
+    
 
         <h:outputLabel for="username">Username:</h:outputLabel>
 
@@ -20,9 +20,7 @@
         
         <h:inputSecret class="login-input" id="passL" value="#{loginBean.password}"/>
 
-    </h:panelGrid>
-
-     <h:commandButton class="login-submit" value="Login" action="#{loginBean.doEnviar()}" />
+        <h:commandButton class="login-submit" value="Login" action="#{loginBean.doEnviar()}" />
 
     
 

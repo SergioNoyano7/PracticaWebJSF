@@ -5,11 +5,13 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Muro de Post</title>
+        <h:outputStylesheet  name="css/style.css"  />
     </h:head>
     <h:body>
-        <h1>Muro de Post del usuario: #{loginBean.user.nombre}</h1>
+        <div align="center" class="div_text" ><h1>Muro de Post del usuario: #{loginBean.user.nombre}</h1>
+        </div>
         #{postearBean.setListado(0)}
-        <h:dataTable value="#{postearBean.listaPost}" var="post" border="1">
+        <div align="center" ><h:dataTable  value="#{postearBean.listaPost}" var="post" border="1">
             <h:column>
                 <f:facet name="header">
                     ID post
@@ -22,10 +24,20 @@
                 </f:facet>
                 #{post.texto}
             </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Imagen
+                </f:facet>
+                    <h:form>
+                        <h:commandLink value="Ver imagen" rendered="#{post.imagen != null}" action="#{postearBean.doMostrarImagen(post)}" />
+                    </h:form>
+                    <h:outputText value="Sin imagen" rendered="#{post.imagen == null}" />
+            </h:column>
         </h:dataTable>
+        </div>
 
         <h:form>
-            <h:commandButton value="Volver a la página principal" action="principal" />
+            <div align="center" class="div" ><h:commandButton class="button" value="Volver a la página principal" action="principal" /> </div>
         </h:form>
     </h:body>
 </html>

@@ -4,14 +4,16 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>Postear</title>
+        <h:outputStylesheet  name="css/style.css"  />
     </h:head>
     <h:body> 
-        Usuario: #{loginBean.user.nombre}
-        <h:form>
-            Escriba aqu&iacute; su post:<br/>
+        <div align="center" class="div_text">Usuario: #{loginBean.user.nombre}</div>
+        <div align="center"><h:form>
+                <div class="texto">   Escriba aqu&iacute; su post:<br/> </div>
             
-            <h:inputTextarea value="#{postearBean.texto}"/><br/>
-            <h:commandButton value="Postear" action="#{postearBean.doPostear()}" /><br/>
+            <h:inputTextarea  class="css-input" value="#{postearBean.texto}"/><br/>
+            <h:commandButton class="button" value="Postear" action="#{postearBean.doPostear()}" /><br/>
         </h:form>
+            </div>
     </h:body>
 </html>
