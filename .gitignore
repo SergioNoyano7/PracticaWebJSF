@@ -7,3 +7,6 @@
 /dist/
 /build/
 /PracticaWebJSF-war/dist/
+/PracticaWebJSF-ejb/src/conf/
+/PracticaWebJSF-war/src/conf/
+/src/conf/
