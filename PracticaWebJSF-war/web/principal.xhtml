@@ -12,7 +12,7 @@
         <div  ><h:form>
              <div class="div_text" align="right" ><h:outputFormat  rendered="#{loginBean.user.administrador == '1'}" value="Este usuario es administrador" /><br/></div>
              <div class="div" ><h:commandButton class="button" rendered="#{loginBean.user.administrador == '1'}" value="Lista usuarios de la Red Social" action="#{principalBean.doListaUsuarios()}" /><br/></div>
-             <div class="div" ><h:commandButton class="button" value="AÃ±adir post" action="#{principalBean.doPostear()}" /><br/></div>
+             <div class="div" ><h:commandButton class="button" value="Añadir post" action="#{principalBean.doPostear()}" /><br/></div>
              <div class="div" ><h:commandButton class="button" value="Lista post" action="#{postearBean.doListaPost()}" /><br/></div>
              <div class="div" ><h:commandButton class="button" value="Grupos" action="#{principalBean.doGrupos()}" /><br/></div>
              <div class="div" ><h:commandButton class="button" value="A&ntilde;adir Amigo" action="#{principalBean.doGestionarAmigo()}" /> <br/></div>
