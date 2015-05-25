@@ -8,7 +8,7 @@
         <h:outputStylesheet  name="css/style.css"  />
     </h:head>
     <h:body>
-        <div align="center" class="div_text" ><h1>Muro de Post del usuario: #{loginBean.user.nombre}</h1>
+        <div align="center" class="div_left" ><h1>Muro de Post del usuario: #{loginBean.user.nombre}</h1>
         </div>
         #{postearBean.setListado(0)}
         <div align="center" ><h:dataTable  value="#{postearBean.listaPost}" var="post" border="1">

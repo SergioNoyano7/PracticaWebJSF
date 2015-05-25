@@ -9,6 +9,7 @@ import static com.sun.faces.facelets.util.Path.context;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -81,11 +82,15 @@ public class FileUploadView {
             System.out.println("Uploaded file successfully saved in " + file);
             
             Tpost p = postearBean.getPost();
-            p.setImagen(filePath + file.getFileName());
+            p.setImagen(file.getFileName().toString());
+            this.fachadaPost.edit(p);
+        } catch(FileAlreadyExistsException exc){
+            Tpost p = postearBean.getPost();
+            p.setImagen(event.getFile().getFileName());
             this.fachadaPost.edit(p);
         } catch (IOException ex) {
             Logger.getLogger(FileUploadView.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
+        }finally {
             try {
                 input.close();
             } catch (IOException ex) {

@@ -105,4 +105,9 @@ public class PrincipalBean {
         loginBean.setGestionar('a');
         return "gestionAmigo";
     }
+    
+    public String doSalirSesion(){
+        loginBean.setUser(null);
+        return "login";
+    }
 }

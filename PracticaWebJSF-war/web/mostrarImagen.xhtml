@@ -4,12 +4,13 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>Imagen de Post</title>
+        <h:outputStylesheet  name="css/style.css"  />
     </h:head>
-    <h:body>
-        Esta es la imagen asociada al post con ID = #{postearBean.post.id}<br/>
-        <h:graphicImage value="http://localhost:8080/PracticaWebJSF-war/#{postearBean.post.imagen}" height="70" width="70"/><br/>
+    <h:body class="body">
+        <div class="div_left">Esta es la imagen asociada al post con ID = #{postearBean.post.id}</div><br/>
+        <div align="center"><h:graphicImage value="http://localhost:8080/images/#{postearBean.post.imagen}" height="500" width="500"/></div><br/>
         <h:form>
-            <h:commandButton value="Volver a la lista de post" action="listaPost" />
+            <div class="div" align="center"><h:commandButton class="button" value="Volver a la lista de post" action="listaPost" /></div>
         </h:form>
     </h:body>
 </html>
