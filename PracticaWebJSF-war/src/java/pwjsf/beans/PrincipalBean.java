@@ -101,8 +101,13 @@ public class PrincipalBean {
         return "listaUsuariosRed";
     }
      
-    public String doGestionarAmigo(){
+    public String doAnadirAmigo(){
         loginBean.setGestionar('a');
+        return "gestionAmigo";
+    }
+    
+    public String doEliminarAmigo(){
+        loginBean.setGestionar('d');
         return "gestionAmigo";
     }
     

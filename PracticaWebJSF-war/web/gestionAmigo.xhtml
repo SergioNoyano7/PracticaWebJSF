@@ -37,15 +37,15 @@
             <br/>
             <h:commandButton  class="button" value="A&ntilde;adir" 
                              action="#{gestionarAmigoBean.doAnadir}"
-                             rendered="#{gestionarAmigoBean.loginBean.gestionar == 'a'}"
-                             />
+                             rendered="#{gestionarAmigoBean.loginBean.gestionar == 'a'}"/>
+                        
             <h:commandButton value="Eliminar"
                              action="#{gestionarAmigoBean.doEliminar}"
                              rendered="#{gestionarAmigoBean.loginBean.gestionar == 'd'}"
                              />
         </h:form>
         </div><div align="center" class="div" >
-            <h:dataTable value="#{loginBean.listaAmigos}" var="amigo" border="1">
+            <h:dataTable id="tablaAmigos" value="#{loginBean.listaAmigos}" var="amigo" border="1">
             
                 <h:column rendered="#{!loginBean.listaAmigos.isEmpty()}">
                     <f:facet name="header">

@@ -75,4 +75,29 @@ public class GestionarAmigoBean {
         FacesContext.getCurrentInstance().addMessage(null, errorMessage);
         return redireccionamiento;
     }
+    
+    public String doEliminar(){
+        String redireccionamiento = "gestionOK";
+        String mensaje = null;
+        if(nombreAmigoGestionado.equals("")){
+            mensaje = "Introduzca el nombre del usuario";
+            redireccionamiento = null;
+        }else{
+            this.usuarioGestionado = tusuarioFacade.findByName(nombreAmigoGestionado);
+            if(usuarioGestionado==null){
+                mensaje = "El usuario no existe";
+                redireccionamiento = null;
+            }else{
+                if(!tusuarioFacade.deleteFriendByName(loginBean.user, usuarioGestionado)){
+                    mensaje = "Este usuario No es tu amigo";
+                    redireccionamiento = null;
+                }
+            }
+        }
+        FacesMessage errorMessage = new FacesMessage(mensaje);
+        errorMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
+        FacesContext.getCurrentInstance().addMessage(null, errorMessage);
+        
+        return redireccionamiento;
+    }
 }

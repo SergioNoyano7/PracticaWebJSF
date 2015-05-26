@@ -202,6 +202,19 @@ public class Tusuario implements Serializable {
        
        return ok;
     }
+      
+    public boolean removeFriend(Tusuario eliminando) {
+        boolean eliminado = false;
+        if(tusuarioList.contains(eliminando)){
+            this.tusuarioList.remove(eliminando);
+            eliminado = true;
+        }
+        if(tusuarioList1.contains(eliminando)){
+            this.tusuarioList1.remove(eliminando);
+            eliminado = true;
+        }
+        return eliminado;
+    }
     
     
 }

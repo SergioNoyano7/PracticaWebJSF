@@ -117,6 +117,16 @@ public class TusuarioFacade extends AbstractFacade<Tusuario> {
         
         edit(u);
     }
+        
+    public boolean deleteFriendByName(Tusuario usuario, Tusuario eliminando) {
+        boolean eliminado = false;
+        if(usuario.removeFriend(eliminando) && eliminando.removeFriend(usuario)){
+            em.merge(usuario);
+            em.merge(eliminando);
+            eliminado = true;
+        }
+        return eliminado;
+    }
     
     public void abandonarGrupo(Tusuario u){
         u.setTgrupoId(null);
