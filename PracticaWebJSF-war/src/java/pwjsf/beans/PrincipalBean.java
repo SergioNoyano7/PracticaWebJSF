@@ -46,6 +46,16 @@ public class PrincipalBean {
         return "menuGrupos";
     }
     
+    public String doUnirseGrupo(){
+        loginBean.setGestionarGrupos('0');
+        return "GestionGrupo";
+    }
+    
+    public String doCrearGrupo(){
+        loginBean.setGestionarGrupos('1');
+        return "GestionGrupo";
+    }
+    
     public TusuarioFacade getFachada() {
         return fachada;
     }
@@ -110,6 +120,8 @@ public class PrincipalBean {
         loginBean.setGestionar('d');
         return "gestionAmigo";
     }
+    
+    
     
     public String doSalirSesion(){
         loginBean.setUser(null);

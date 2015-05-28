@@ -5,6 +5,7 @@
  */
 package pwjsf.beans;
 
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -12,6 +13,7 @@ import javax.faces.bean.RequestScoped;
 import pwjsf.ejb.TgrupoFacade;
 import pwjsf.ejb.TusuarioFacade;
 import pwjsf.entity.Tgrupo;
+import pwjsf.entity.Tusuario;
 
 /**
  *
@@ -29,8 +31,10 @@ public class GruposBean {
     private LoginBean loginBean;
     
     
-    
+    private String nombreGrupo;
     private Tgrupo grupo;
+    private List<Tgrupo> listaGrupo;
+    
     
     
     /**
@@ -70,7 +74,62 @@ public class GruposBean {
     public void setGrupo(Tgrupo grupo) {
         this.grupo = grupo;
     }
+
+    public String getNombreGrupo() {
+        return nombreGrupo;
+    }
+
+    public void setNombreGrupo(String nombreGrupo) {
+        this.nombreGrupo = nombreGrupo;
+    }
+
+    public List<Tgrupo> getListaGrupo() {
+        List<Tgrupo> listaGrupos = tgrupoFacade.findAll();
+        return listaGrupos;
+    }
+
+    public void setListaGrupo(List<Tgrupo> listaGrupo) {
+        this.listaGrupo = listaGrupo;
+    }
     
+    public String doAbandondarGrupo(){
+        String paginaSiguiente="menuGrupos";
+        Tusuario user = loginBean.getUser();
+        Tgrupo grupo=user.getTgrupoId();
+        tusuarioFacade.abandonarGrupo(user);
+        if(grupo.getTusuarioList().size()==1 || grupo.getTusuarioList().size()==0){
+            tgrupoFacade.eliminarGrupo(grupo);
+        }
+        
+        return paginaSiguiente;
+    }
+    
+    public String doUnirseGrupo(){
+        String paginaSiguiente="menuGrupos";
+        Tusuario user = loginBean.getUser();
+        
+        Tgrupo g = tgrupoFacade.findByName(nombreGrupo);
+        
+        tusuarioFacade.añadirGrupoAUsuario(g, user);
+        
+        return paginaSiguiente;
+    }
+    
+    public String doCrearGrupo(){
+        String paginaSiguiente="menuGrupos";
+        Tusuario usuario= loginBean.getUser();
+        Tgrupo g = new Tgrupo();
+        g.setNombre(nombreGrupo);
+        
+        tgrupoFacade.insertarGrupoByName(g);
+
+        tusuarioFacade.añadirGrupoAUsuario(g, usuario);
+                
+        return paginaSiguiente;
+
+    }
+    
+   
     
     
 }
