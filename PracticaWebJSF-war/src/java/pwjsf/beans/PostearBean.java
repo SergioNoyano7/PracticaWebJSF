@@ -7,9 +7,11 @@ package pwjsf.beans;
 
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import pwjsf.ejb.TpostFacade;
 import pwjsf.entity.Tpost;
 import pwjsf.entity.Tusuario;
@@ -126,5 +128,28 @@ public class PostearBean {
     public String doMostrarImagen(Tpost p){
         setPost(p);
         return "mostrarImagen";
+    }
+    
+    public String doPostearGrupo(){
+        String mensaje = null;
+        String redireccionamiento = null;
+        
+        if(texto.equals("")){
+            mensaje = "Rellene el campo de texto";
+        }else{
+            try{
+                List<Tusuario> usuariosGrupo = loginBean.user.getTgrupoId().getTusuarioList();
+                fachadaPost.insertPostToGroup(usuariosGrupo, texto);
+                redireccionamiento = "principal"; 
+            }catch(NullPointerException e){
+                mensaje = "El usuairo no está en ningún grupo";
+                redireccionamiento = null;
+            }
+        }
+        FacesMessage errorMessage = new FacesMessage(mensaje);
+        errorMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
+        FacesContext.getCurrentInstance().addMessage(null, errorMessage);
+        
+        return redireccionamiento;
     }
 }

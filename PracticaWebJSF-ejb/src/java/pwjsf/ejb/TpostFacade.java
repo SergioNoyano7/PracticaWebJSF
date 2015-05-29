@@ -50,5 +50,11 @@ public class TpostFacade extends AbstractFacade<Tpost> {
         
         return listaPost;
     }
+     public void insertPostToGroup(List<Tusuario> usuariosGrupo, String post) {
+        
+       for(Tusuario u :usuariosGrupo){
+           em.persist(u.insertPost(post));
+       }
+    }
     
 }

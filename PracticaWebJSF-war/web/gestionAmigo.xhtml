@@ -28,7 +28,7 @@
                            rendered="#{gestionarAmigoBean.loginBean.gestionar == 'd'}"
                            />
             <br/>
-            <h:messages errorStyle="color:red; list-style:none" />
+            <h:messages id="mensaje" errorStyle="color:red; list-style:none" />
             <h:inputText value="#{gestionarAmigoBean.nombreAmigoGestionado}" 
                          required="true"
                          requiredMessage="Introduzca el nombre del amigo"
@@ -39,13 +39,15 @@
                              action="#{gestionarAmigoBean.doAnadir}"
                              rendered="#{gestionarAmigoBean.loginBean.gestionar == 'a'}">
                  <f:ajax execute="@form"
-                        render="tablaAmigos"/>
+                        render="tablaAmigos mensaje"/>
             </h:commandButton>
                         
             <h:commandButton value="Eliminar"
                              action="#{gestionarAmigoBean.doEliminar}"
-                             rendered="#{gestionarAmigoBean.loginBean.gestionar == 'd'}"
-                             />
+                             rendered="#{gestionarAmigoBean.loginBean.gestionar == 'd'}">
+                <f:ajax execute="@form"
+                        render="tablaAmigos mensaje"/>
+            </h:commandButton>
         </h:form>
         </div><div align="center" class="div" >
             <h:dataTable id="tablaAmigos" value="#{loginBean.listaAmigos}" var="amigo" border="1">
@@ -58,6 +60,10 @@
                 </h:column>
             </h:dataTable>
         </div>
+         
+        <h:form>
+            <h:commandButton class="button" value="Menú principal"  action="principal"/>
+        </h:form>
         
     </h:body>
 </html>

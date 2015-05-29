@@ -77,20 +77,20 @@ public class GestionarAmigoBean {
     }
     
     public String doEliminar(){
-        String redireccionamiento = "gestionOK";
+       
         String mensaje = null;
         if(nombreAmigoGestionado.equals("")){
             mensaje = "Introduzca el nombre del usuario";
-            redireccionamiento = null;
+            
         }else{
             this.usuarioGestionado = tusuarioFacade.findByName(nombreAmigoGestionado);
             if(usuarioGestionado==null){
                 mensaje = "El usuario no existe";
-                redireccionamiento = null;
+                
             }else{
                 if(!tusuarioFacade.deleteFriendByName(loginBean.user, usuarioGestionado)){
                     mensaje = "Este usuario No es tu amigo";
-                    redireccionamiento = null;
+                    
                 }
             }
         }
