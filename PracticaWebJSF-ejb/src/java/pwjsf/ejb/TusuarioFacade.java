@@ -131,6 +131,7 @@ public class TusuarioFacade extends AbstractFacade<Tusuario> {
     public void abandonarGrupo(Tusuario u){
         u.setTgrupoId(null);
         edit(u);
+
     }
     
 }

@@ -5,11 +5,16 @@
  */
 package pwjsf.beans;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import pwjsf.ejb.TpostFacade;
 import pwjsf.entity.Tpost;
 import pwjsf.entity.Tusuario;
@@ -127,4 +132,17 @@ public class PostearBean {
         setPost(p);
         return "mostrarImagen";
     }
+    
+    @PostConstruct
+    public void ComprobarUser(){
+        if(loginBean.user==null){
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().dispatch("control.xhtml");
+            } catch (IOException ex) {
+                Logger.getLogger(GruposBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+            
+    }
+    
 }

@@ -12,18 +12,26 @@
     <h:body rendered="#{loginBean.gestionarGrupos=='0'}">
         Selecciona el grupo al que te quieres unir
         <h:form>
-            <h:selectOneListbox id="selectorGrupos" value="#{gruposBean.nombreGrupo}">
+            <h:selectOneMenu id="selectorGrupos" value="#{gruposBean.nombreGrupo}">
+            <f:selectItems itemLabel="--Seleccione Grupo--"/>
                 <f:selectItems value="#{gruposBean.listaGrupo}" var="nombreGrupo" itemLabel="#{nombreGrupo.nombre}" itemValue="#{nombreGrupo.nombre}" />
-            </h:selectOneListbox>
+            </h:selectOneMenu>
             <h:commandButton value="UnirseGrupo" action="#{gruposBean.doUnirseGrupo()}" />
+            <br/>
+            <h:commandButton value="Volver a la página principal" action="principal" />
+
         </h:form>
     </h:body>
     <h:body rendered="#{loginBean.gestionarGrupos=='1'}">
         Introduce el nombre del grupo que quieres crear:
+        
         <br/>
         <h:form>
-             <h:inputText value="#{gruposBean.nombreGrupo}" />
+            <h:inputText value="#{gruposBean.nombreGrupo}" />
+            <h:messages errorStyle="color:red; list-style:none"/>
             <h:commandButton value="CrearGrupo" action="#{gruposBean.doCrearGrupo()}" />
+            <br/>
+            <h:commandButton value="Volver a la página principal" action="principal" />
         </h:form>
     </h:body>
 </html>

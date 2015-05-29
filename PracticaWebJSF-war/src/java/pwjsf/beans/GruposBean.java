@@ -5,11 +5,18 @@
  */
 package pwjsf.beans;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import pwjsf.ejb.TgrupoFacade;
 import pwjsf.ejb.TusuarioFacade;
 import pwjsf.entity.Tgrupo;
@@ -97,7 +104,8 @@ public class GruposBean {
         Tusuario user = loginBean.getUser();
         Tgrupo grupo=user.getTgrupoId();
         tusuarioFacade.abandonarGrupo(user);
-        if(grupo.getTusuarioList().size()==1 || grupo.getTusuarioList().size()==0){
+        grupo.getTusuarioList().remove(user);
+        if(grupo.getTusuarioList().size()==0){
             tgrupoFacade.eliminarGrupo(grupo);
         }
         
@@ -117,16 +125,36 @@ public class GruposBean {
     
     public String doCrearGrupo(){
         String paginaSiguiente="menuGrupos";
-        Tusuario usuario= loginBean.getUser();
-        Tgrupo g = new Tgrupo();
-        g.setNombre(nombreGrupo);
-        
-        tgrupoFacade.insertarGrupoByName(g);
+        String mensaje = "Introduce un nombre";
+        if(nombreGrupo.equals("")){
+            paginaSiguiente = null;
+        }else{
+            Tusuario usuario= loginBean.getUser();
+            Tgrupo g = new Tgrupo();
+            g.setNombre(nombreGrupo);
 
-        tusuarioFacade.añadirGrupoAUsuario(g, usuario);
+            tgrupoFacade.insertarGrupoByName(g);
+
+            tusuarioFacade.añadirGrupoAUsuario(g, usuario);
+        }
+        FacesMessage errorMessage = new FacesMessage(mensaje);
+        errorMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
+        FacesContext.getCurrentInstance().addMessage(null, errorMessage);
                 
         return paginaSiguiente;
 
+    }
+    
+    @PostConstruct
+    public void ComprobarUser(){
+        if(loginBean.user==null){
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().dispatch("control.xhtml");
+            } catch (IOException ex) {
+                Logger.getLogger(GruposBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+            
     }
     
    

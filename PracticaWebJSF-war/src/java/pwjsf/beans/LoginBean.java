@@ -5,11 +5,16 @@ package pwjsf.beans;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import pwjsf.ejb.TusuarioFacade;
 import pwjsf.entity.Tusuario;
 
@@ -119,9 +124,9 @@ public class LoginBean {
        }
         
 }
-    
-    
-    
-    
-    
 
+    
+    
+    
+    
+    

@@ -5,6 +5,10 @@
  */
 package pwjsf.beans;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -100,4 +104,16 @@ public class GestionarAmigoBean {
         
         return redireccionamiento;
     }
+    @PostConstruct
+    public void ComprobarUser(){
+        if(loginBean.user==null){
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().dispatch("control.xhtml");
+            } catch (IOException ex) {
+                Logger.getLogger(GruposBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+            
+    }
+    
 }
