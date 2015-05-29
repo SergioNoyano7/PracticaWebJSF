@@ -73,7 +73,7 @@ public class GestionarAmigoBean {
         FacesMessage errorMessage = new FacesMessage(mensaje);
         errorMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
         FacesContext.getCurrentInstance().addMessage(null, errorMessage);
-        return redireccionamiento;
+        return null;
     }
     
     public String doEliminar(){
@@ -98,6 +98,6 @@ public class GestionarAmigoBean {
         errorMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
         FacesContext.getCurrentInstance().addMessage(null, errorMessage);
         
-        return redireccionamiento;
+        return null;
     }
 }

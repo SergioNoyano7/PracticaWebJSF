@@ -35,9 +35,12 @@
                          />
             
             <br/>
-            <h:commandButton  class="button" value="A&ntilde;adir" 
+            <h:commandButton value="A&ntilde;adir" 
                              action="#{gestionarAmigoBean.doAnadir}"
-                             rendered="#{gestionarAmigoBean.loginBean.gestionar == 'a'}"/>
+                             rendered="#{gestionarAmigoBean.loginBean.gestionar == 'a'}">
+                 <f:ajax execute="@form"
+                        render="tablaAmigos"/>
+            </h:commandButton>
                         
             <h:commandButton value="Eliminar"
                              action="#{gestionarAmigoBean.doEliminar}"
