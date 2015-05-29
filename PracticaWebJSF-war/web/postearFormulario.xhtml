@@ -13,7 +13,9 @@
                 <h:messages errorStyle="color:red; list-style:none"/>
                 <div class="texto">   Escriba aqu&iacute; su post:<br/> </div>
             
-            <h:inputTextarea  class="css-input" value="#{postearBean.texto}"/><br/>
+            <h:inputTextarea  class="css-input" value="#{postearBean.texto}"
+                              required="true" requiredMessage="Rellene el campo de texto"
+                              /><br/>
             <h:commandButton class="button" value="Postear" action="#{postearBean.doPostear()}" /><br/>
             <h:commandButton class="button" 
                              value="Postear a Grupo" 

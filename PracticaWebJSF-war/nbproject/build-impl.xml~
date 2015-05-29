@@ -1010,7 +1010,6 @@ exists or setup the property manually. For example like this:
     </target>
     <target depends="init" name="library-inclusion-in-archive" unless="dist.ear.dir">
         <copyfiles files="${file.reference.commons-io-2.4.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
-        <copyfiles files="${file.reference.commons-io-2.4.jar-1}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${file.reference.primefaces-5.2.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
     </target>
     <target depends="init" if="dist.ear.dir" name="-clean-webinf-lib">
