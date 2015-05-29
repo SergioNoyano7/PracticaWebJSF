@@ -1,13 +1,28 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Menu Grupos</title>
     </h:head>
     <h:body rendered="#{loginBean.user.tgrupoId!=null}">
         
-        Tengo grupo
+        Grupo: #{loginBean.user.tgrupoId.nombre}
+        <h:form>
+            <h:commandButton value="AbandonarGrupo" action="#{gruposBean.doAbandondarGrupo()}" />
+        </h:form>
+        <div align="center" class="div" >
+            <h:dataTable id="tablaAmigos" value="#{loginBean.user.tgrupoId.tusuarioList}" var="usuarios" border="1">
+            
+                <h:column rendered="#{!loginBean.user.tgrupoId.tusuarioList.isEmpty()}">
+                    <f:facet name="header">
+                        Miembros:
+                    </f:facet>
+                    #{usuarios.nombre}
+                </h:column>
+            </h:dataTable>
+        </div>
         <h:form>
             <h:commandButton value="Volver a la página principal" action="principal" />
         </h:form>
@@ -15,8 +30,10 @@
     
     <h:body rendered="#{loginBean.user.tgrupoId==null}">
         
-        No tengo grupo
+        Unete o crea un grupo
         <h:form>
+            <h:commandButton value="Unirse a un Grupo" action="#{principalBean.doUnirseGrupo()}" /><br/>
+            <h:commandButton value="Crear un Grupo" action="#{principalBean.doCrearGrupo()}" /><br/>
             <h:commandButton value="Volver a la página principal" action="principal" />
         </h:form>
     </h:body>

@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head rendered="#{loginBean.gestionarGrupos=='0'}">
+        <title>Unirse Grupo</title>
+    </h:head>
+    <h:head rendered="#{loginBean.gestionarGrupos=='1'}">
+        <title>Crear Grupo</title>
+    </h:head>
+    <h:body rendered="#{loginBean.gestionarGrupos=='0'}">
+        Selecciona el grupo al que te quieres unir
+        <h:form>
+            <h:selectOneListbox id="selectorGrupos" value="#{gruposBean.nombreGrupo}">
+                <f:selectItems value="#{gruposBean.listaGrupo}" var="nombreGrupo" itemLabel="#{nombreGrupo.nombre}" itemValue="#{nombreGrupo.nombre}" />
+            </h:selectOneListbox>
+            <h:commandButton value="UnirseGrupo" action="#{gruposBean.doUnirseGrupo()}" />
+        </h:form>
+    </h:body>
+    <h:body rendered="#{loginBean.gestionarGrupos=='1'}">
+        Introduce el nombre del grupo que quieres crear:
+        <br/>
+        <h:form>
+             <h:inputText value="#{gruposBean.nombreGrupo}" />
+            <h:commandButton value="CrearGrupo" action="#{gruposBean.doCrearGrupo()}" />
+        </h:form>
+    </h:body>
+</html>
+

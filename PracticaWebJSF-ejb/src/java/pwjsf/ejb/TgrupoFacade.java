@@ -65,15 +65,8 @@ public class TgrupoFacade extends AbstractFacade<Tgrupo> {
         return g;
     }
     
-    public Tgrupo insertarGrupoByName(String nombre){
-        
-        Tgrupo grupo = new Tgrupo();
-        grupo.setNombre(nombre);
-        
+    public void insertarGrupoByName(Tgrupo grupo){
         em.persist(grupo);
-        
-        return grupo;
-        
     }
     
     public List<Tgrupo> findAll(){

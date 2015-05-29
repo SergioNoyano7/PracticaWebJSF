@@ -35,6 +35,7 @@ public class LoginBean {
     - List<Tusuario> listaAmigos que contendrá la lista de amigos del usuario logueado
     */
     private char gestionar;
+    private char gestionarGrupos;
     private List<Tusuario> listaAmigos;
     
     /**
@@ -83,6 +84,14 @@ public class LoginBean {
 
     public void setListaAmigos(List<Tusuario> listaAmigos) {
         this.listaAmigos = listaAmigos;
+    }
+
+    public char getGestionarGrupos() {
+        return gestionarGrupos;
+    }
+
+    public void setGestionarGrupos(char gestionarGrupos) {
+        this.gestionarGrupos = gestionarGrupos;
     }
     
     public String doEnviar (){
