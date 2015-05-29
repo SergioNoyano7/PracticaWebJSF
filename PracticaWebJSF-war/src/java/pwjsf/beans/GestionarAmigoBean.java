@@ -77,24 +77,24 @@ public class GestionarAmigoBean {
         FacesMessage errorMessage = new FacesMessage(mensaje);
         errorMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
         FacesContext.getCurrentInstance().addMessage(null, errorMessage);
-        return redireccionamiento;
+        return null;
     }
     
     public String doEliminar(){
-        String redireccionamiento = "gestionOK";
+       
         String mensaje = null;
         if(nombreAmigoGestionado.equals("")){
             mensaje = "Introduzca el nombre del usuario";
-            redireccionamiento = null;
+            
         }else{
             this.usuarioGestionado = tusuarioFacade.findByName(nombreAmigoGestionado);
             if(usuarioGestionado==null){
                 mensaje = "El usuario no existe";
-                redireccionamiento = null;
+                
             }else{
                 if(!tusuarioFacade.deleteFriendByName(loginBean.user, usuarioGestionado)){
                     mensaje = "Este usuario No es tu amigo";
-                    redireccionamiento = null;
+                    
                 }
             }
         }
@@ -102,7 +102,7 @@ public class GestionarAmigoBean {
         errorMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
         FacesContext.getCurrentInstance().addMessage(null, errorMessage);
         
-        return redireccionamiento;
+        return null;
     }
     @PostConstruct
     public void ComprobarUser(){

@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -145,4 +146,26 @@ public class PostearBean {
             
     }
     
+    public String doPostearGrupo(){
+        String mensaje = null;
+        String redireccionamiento = null;
+        
+        if(texto.equals("")){
+            mensaje = "Rellene el campo de texto";
+        }else{
+            try{
+                List<Tusuario> usuariosGrupo = loginBean.user.getTgrupoId().getTusuarioList();
+                fachadaPost.insertPostToGroup(usuariosGrupo, texto);
+                redireccionamiento = "principal"; 
+            }catch(NullPointerException e){
+                mensaje = "El usuairo no está en ningún grupo";
+                redireccionamiento = null;
+            }
+        }
+        FacesMessage errorMessage = new FacesMessage(mensaje);
+        errorMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
+        FacesContext.getCurrentInstance().addMessage(null, errorMessage);
+        
+        return redireccionamiento;
+    }
 }

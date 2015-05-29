@@ -8,12 +8,23 @@
     </h:head>
     <h:body> 
         <div align="center" class="div_text">Usuario: #{loginBean.user.nombre}</div>
-        <div align="center"><h:form>
+        <div align="center">
+            <h:form>
+                <h:messages errorStyle="color:red; list-style:none"/>
                 <div class="texto">   Escriba aqu&iacute; su post:<br/> </div>
             
             <h:inputTextarea  class="css-input" value="#{postearBean.texto}"/><br/>
             <h:commandButton class="button" value="Postear" action="#{postearBean.doPostear()}" /><br/>
+            <h:commandButton class="button" 
+                             value="Postear a Grupo" 
+                             rendered="#{loginBean.user.tgrupoId != null}"
+                             action="#{postearBean.doPostearGrupo()}">
+            
+            </h:commandButton>
+            </h:form>
+        </div>
+        <h:form>
+            <h:commandButton class="button" value="Menún Principal" action="principal"/>
         </h:form>
-            </div>
     </h:body>
 </html>

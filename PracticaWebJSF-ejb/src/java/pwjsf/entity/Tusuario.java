@@ -216,5 +216,13 @@ public class Tusuario implements Serializable {
         return eliminado;
     }
     
+    public Tpost insertPost(String post) {
+        Tpost nuevoPost = new Tpost();
+        nuevoPost.setTexto(post);
+        nuevoPost.setTusuarioIdUser(this);
+        
+        return nuevoPost;
+    }
+    
     
 }
