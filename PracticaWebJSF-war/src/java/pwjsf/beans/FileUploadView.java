@@ -81,10 +81,12 @@ public class FileUploadView {
             Files.copy(input, file, StandardCopyOption.REPLACE_EXISTING);
             System.out.println("Uploaded file successfully saved in " + file);
             
+            //guardando el nombre del fichero en la base de datos
             Tpost p = postearBean.getPost();
             p.setImagen(file.getFileName().toString());
             this.fachadaPost.edit(p);
         } catch(FileAlreadyExistsException exc){
+            //si la imagen ya existe en la carpeta destino, se guarda el nombre del fichero en la base de datos
             Tpost p = postearBean.getPost();
             p.setImagen(event.getFile().getFileName());
             this.fachadaPost.edit(p);
