@@ -76,7 +76,7 @@ public class FileUploadView {
             
             String extension = FilenameUtils.getExtension(uploadedFile.getFileName());
             Path folder = Paths.get(filePath + filename + "." + extension);
-            //Path file = Files.createTempFile(folder, filename, "." + extension);
+            
             Path file = Files.createFile(folder);
             Files.copy(input, file, StandardCopyOption.REPLACE_EXISTING);
             System.out.println("Uploaded file successfully saved in " + file);

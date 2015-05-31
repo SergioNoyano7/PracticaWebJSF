@@ -58,19 +58,19 @@ public class GestionarAmigoBean {
     
     public String doAnadir(){
         String mensaje = null;
-        String redireccionamiento = "gestionOK";
+        
         if(nombreAmigoGestionado.equals("")){
             mensaje = "Introduzca el nombre del usuario";
-            redireccionamiento = null;
+            
         }else{
             this.usuarioGestionado = tusuarioFacade.findByName(nombreAmigoGestionado);
             if(usuarioGestionado==null){
                 mensaje = "El usuario no existe";
-                redireccionamiento = null;
+                
             }else{
                 if(!tusuarioFacade.insertarAmigoByNombre(loginBean.user, usuarioGestionado)){
                     mensaje = "Este usuario ya es tu amigo";
-                    redireccionamiento = null;
+                   
                 }
             }
         }
