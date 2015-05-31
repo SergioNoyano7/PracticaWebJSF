@@ -8,7 +8,7 @@
         <description>Location to store uploaded file</description> 
         <param-name>file-upload</param-name> 
         <param-value>
-            /Applications/NetBeans/glassfish-4.1/glassfish/domains/domain1/autodeploy/images
+            /Applications/NetBeans/glassfish-4.1/glassfish/domains/domain1/autodeploy/images/
         </param-value>
     </context-param>
     <servlet>
