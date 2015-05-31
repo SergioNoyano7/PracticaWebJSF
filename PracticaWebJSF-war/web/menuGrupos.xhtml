@@ -5,13 +5,12 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Menu Grupos</title>
+        <h:outputStylesheet  name="css/style.css"  />
     </h:head>
     <h:body rendered="#{loginBean.user.tgrupoId!=null}">
         
-        Grupo: #{loginBean.user.tgrupoId.nombre}
-        <h:form>
-            <h:commandButton value="AbandonarGrupo" action="#{gruposBean.doAbandondarGrupo()}" />
-        </h:form>
+        <div align="center" class="div_text">Grupo: #{loginBean.user.tgrupoId.nombre}</div>
+        
         <div align="center" class="div" >
             <h:dataTable id="tablaAmigos" value="#{loginBean.user.tgrupoId.tusuarioList}" var="usuarios" border="1">
             
@@ -23,19 +22,23 @@
                 </h:column>
             </h:dataTable>
         </div>
-        <h:form>
-            <h:commandButton value="Volver a la página principal" action="principal" />
-        </h:form>
+        <div align="center" ><h:form>
+            <h:commandButton class="button" value="AbandonarGrupo" action="#{gruposBean.doAbandondarGrupo()}" /><br/>
+            <br/>
+            <h:commandButton class="button" value="Volver a la página principal" action="principal" />
+        </h:form></div>
     </h:body>
     
     <h:body rendered="#{loginBean.user.tgrupoId==null}">
         
-        Unete o crea un grupo
-        <h:form>
-            <h:commandButton value="Unirse a un Grupo" action="#{principalBean.doUnirseGrupo()}" /><br/>
-            <h:commandButton value="Crear un Grupo" action="#{principalBean.doCrearGrupo()}" /><br/>
-            <h:commandButton value="Volver a la página principal" action="principal" />
-        </h:form>
+        <div align="center" class="div_text">Unete o crea un grupo</div>
+        <div align="center" ><h:form>
+            <h:commandButton class="button" value="Unirse a un Grupo" action="#{principalBean.doUnirseGrupo()}" /><br/>
+            <br/>
+            <h:commandButton class="button" value="Crear un Grupo" action="#{principalBean.doCrearGrupo()}" /><br/>
+            <br/>
+            <h:commandButton class="button" value="Volver a la página principal" action="principal" />
+        </h:form></div>
     </h:body>
 </html>
 
